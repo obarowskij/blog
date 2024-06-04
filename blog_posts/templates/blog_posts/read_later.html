@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block title%}
+All my posts
+{%endblock%}
+
+{%block link%}
+    <link rel = "stylesheet" href = "{%static "blog_posts/all_posts.css"%}">
+    <link rel = "stylesheet" href = "{%static "blog_posts/post.css"%}">
+{%endblock%}
+
+{%block content%}
+    <section id = "all-posts">
+    {%if read_later%}
+        <h2>Posts to read later</h2>
+        <ul>
+        {%for post in posts%}
+            {%include "blog_posts/includes/post.html"%}
+        {%endfor%}
+        </ul>
+    </section>
+    {%else%}
+    <h2>You have no posts to read later. Go get some!</h2>
+    {%endif%}
+{%endblock%}

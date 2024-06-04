@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block title%}
+{{post.title}}
+{%endblock%}
+{%block link%}
+<link rel = "stylesheet" href = "{%static "blog_posts/post_details.css"%}">
+{%endblock%}
+{%block content%}
+    <section id = "summary">
+        <h2>{{post.title}}</h2>
+        <div>
+            {%for tag in tags%}
+            <span class = "tag">{{tag}}</span>
+            {%endfor%}
+            <br>
+            <br>
+            <a href = "{{post.slug}}/read_later"><span class = "tag">Read later</span></a>
+        </div>
+        <article>
+            <img src="{{post.image.url}}"alt="{{post.title}}">
+            <address><a href="mailto:{{post.author.email}}" class = "mail">
+                {{post.author.firts_name}}
+                </a>
+            </address>
+        </article>
+    </section>
+    <main>
+        <p>{{post.content}}</p>
+    </main>
+    <div class = "form">
+        <form method = "POST">
+            {% csrf_token %}
+            {%for field in form%}
+                {{field.label_tag}}
+                <br>
+                {{field}}
+                <br>
+            {%endfor%}
+            <input type = "hidden" value = {{post.pk}} name = "post">
+            <input type = "submit" value = 'Submit'>
+        </form>
+    </div>
+    <div class = "coms">
+        {%for comment in comments%}
+        <div class = 'com'>
+            <p class = "name">{{comment.name}}<p>
+            <br>
+            {{comment.content}}
+        </div>
+        <br>
+        {%endfor%}
+    </div>
+{%endblock%}

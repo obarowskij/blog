@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block title%}
+My blog
+{%endblock%}
+{%block link%}
+<link rel = "stylesheet" href = "{%static "blog_posts/index.css"%}">
+<link rel = "stylesheet" href = "{%static "blog_posts/post.css"%}">
+{%endblock%}
+
+{%block content%}
+    
+    <section id = "welcome">
+        <header>
+            <img src = "{%static "blog_posts/images/ja.jpg"%}" alt = "Jacob - Author">
+            <h2>Jacob's blog</h2>
+        </header>
+        <p>Dummy3</p>
+    </section>
+    <section id = "latest-posts">
+        <h2>Latests posts</h2>
+
+        <ul>
+            {%for post in posts%}
+                {%include "blog_posts/includes/post.html"%}
+            {%endfor%}
+        </ul>
+    </section>
+    <section id = "about">
+        <h2>What I Do</h2>
+        <p>Dummy</p>
+        <p>Dummy 2</p>
+    </section>
+{%endblock%}

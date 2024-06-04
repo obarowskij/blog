@@ -1,0 +1,2 @@
+class passMatch(Exception):
+    pass
